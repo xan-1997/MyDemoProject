@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/54517409f6.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+        function changeClass(element) {
+            element.className = "nav-link active";
+        }
+    </script>
+</head>
+<body>
+<!--navbar-->
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #3279b7;">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">Profile</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Edit Profile
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" th:href="@{/edit_profile}">Edit Profile</a></li>
+                        <li><a class="dropdown-item" th:href="@{/edit_contacts}">Edit Contacts</a></li>
+                        <li><a class="dropdown-item" th:href="@{/edit_skills}">Edit Skills</a></li>
+                        <li><a class="dropdown-item" th:href="@{/edit_practice}">Edit Practice</a></li>
+                        <li><a class="dropdown-item" th:href="@{/edit_practise}">Edit Education</a></li>
+                        <li><a class="dropdown-item" th:href="@{edit_languages}">Edit Language</a></li>                        <li><a class="dropdown-item" th:href="@{edit_education}">Edit Education</a></li>
+                        <li><a class="dropdown-item" th:href="@{edit_hobbies}">Edit Hobby</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--Panel -->
+<ul class="nav nav-tabs text-center">
+    <li class="nav-item">
+        <a class="nav-link active" th:href="@{/edit_profile}">Profile</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/edit_contacts}">Contacts</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/edit_skills}">Skills</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/edit_practise}">Practice</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/edit_education}">Education</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/edit_languages}">Languages</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/edit_hobbies}">Hobbies</a>
+    </li>
+</ul>
+<!-- div for edit profile-->
+<div style="margin-left: 20px; margin-right: 40px;">
+    <form th:action="@{/save_prof}" method="post" th:object="${myProfile}">
+        <div style="display: grid">
+            <label style="margin-top: 20px;">Date of Birth: </label>
+            <input style="clear: both; width: 25%;" type="text" th:field="*{birthday}"/>
+            <hr>
+            <label>Country: </label>
+            <input style="clear: both; width: 25%;" type="text" th:field="*{country}">
+            <hr>
+            <label>City: </label>
+            <input style="clear: both; width: 25%;" type="text" th:field="*{city}">
+            <hr>
+            <label>Email: </label>
+            <input style="clear: both; width: 25%;" type="text" th:field="*{email}">
+            <hr>
+            <label>Phone: </label>
+            <input style="clear: both; width: 25%;" type="text" th:field="*{phone}">
+            <hr>
+            <br>
+        </div>
+        <input type="submit" value="Save">
+    </form>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+        integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
+        integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
+        crossorigin="anonymous"></script>
+</body>
+</html>

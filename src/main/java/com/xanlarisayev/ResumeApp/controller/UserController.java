@@ -17,20 +17,19 @@ public class UserController {
     @Autowired
     private ProfileServiceInter psi;
 
+
+
     @RequestMapping("/")
     public String welcomePage(){
-        Profile profile =psi.getById(16);
         return "main";
     }
 
     @ModelAttribute
     public void getModels(Model model){
-        List<Profile> profiles = psi.getAll();
         Profile myProfile = psi.getById(16);
         Utility utility = new Utility();
 
         model.addAttribute("utility", utility);
-        model.addAttribute("profiles", profiles);
         model.addAttribute("myProfile", myProfile);
     }
 }

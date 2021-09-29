@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.xanlarisayev.ResumeApp.ResumeAppApplicationTests
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.429 s - in com.xanlarisayev.ResumeApp.ResumeAppApplicationTests

@@ -15,22 +15,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class EditController {
 
     @Autowired
-    private ProfileServiceInter psi;
+    private ProfileServiceInter profileService;
 
     @Autowired
-    private SkillServiceInter ssi;
+    private SkillServiceInter skillService;
 
     @Autowired
-    private PracticeServiceInter psin;
+    private PracticeServiceInter practiceService;
 
     @Autowired
-    private EducationServiceInter esi;
+    private EducationServiceInter educationService;
 
     @Autowired
-    private LanguageServiceInter lsi;
+    private LanguageServiceInter languageService;
 
     @Autowired
-    private HobbyServiceInter hsi;
+    private HobbyServiceInter hobbyService;
 
 
     //Profile
@@ -41,7 +41,7 @@ public class EditController {
 
     @RequestMapping(value = "/save_prof", method = RequestMethod.POST)
     public String saveProf(@ModelAttribute("myProfile") Profile profile) {
-        psi.update(profile);
+        profileService.update(profile);
         return "redirect:/edit_contacts";
     }
 
@@ -54,7 +54,7 @@ public class EditController {
 
     @RequestMapping(value = "/save_contacts", method = RequestMethod.POST)
     public String saveContacts(@ModelAttribute("myProfile") Profile profile) {
-        psi.update(profile);
+        profileService.update(profile);
         return "redirect:/edit_skills";
     }
 
@@ -68,7 +68,7 @@ public class EditController {
     @RequestMapping(value = "/save_skills", method = RequestMethod.POST)
     public String saveSkills(@ModelAttribute("myProfile") Profile profile) {
         //relational between all tables cascade on update and delete
-        psi.update(profile);
+        profileService.update(profile);
         return "redirect:/edit_practise";
     }
 
@@ -76,13 +76,13 @@ public class EditController {
     public String addSkill(@ModelAttribute("skill") Skill skill,
                            @ModelAttribute("myProfile") Profile profile) {
         skill.setIdProfile(profile.getId());
-        ssi.addSkill(skill);
+        skillService.addSkill(skill);
         return "redirect:/edit_skills";
     }
 
     @RequestMapping(value = "/delete_skill/{skillId}")
     public String deleteSkill(@PathVariable Integer skillId) {
-        ssi.deleteSkill(skillId);
+        skillService.deleteSkill(skillId);
         return "redirect:/edit_skills";
     }
 
@@ -95,7 +95,7 @@ public class EditController {
 
     @RequestMapping(value = "/save_practise", method = RequestMethod.POST)
     public String savePractise(@ModelAttribute("myProfile") Profile profile) {
-        psi.update(profile);
+        profileService.update(profile);
         return "redirect:/edit_education";
     }
 
@@ -103,13 +103,13 @@ public class EditController {
     public String addPractice(@ModelAttribute("practice") Practic practice,
                               @ModelAttribute("myProfile") Profile profile) {
         practice.setIdProfile(profile.getId());
-        psin.addPractice(practice);
+        practiceService.addPractice(practice);
         return "redirect:/edit_practise";
     }
 
     @RequestMapping("/delete_practice/{practiceId}")
     public String deletePractice(@PathVariable Integer practiceId) {
-        psin.deletePractice(practiceId);
+        practiceService.deletePractice(practiceId);
         return "redirect:/edit_practise";
     }
 
@@ -122,7 +122,7 @@ public class EditController {
 
     @RequestMapping(value = "/save_education", method = RequestMethod.POST)
     public String saveEducation(@ModelAttribute("myProfile") Profile profile) {
-        psi.update(profile);
+        profileService.update(profile);
         return "redirect:/edit_languages";
     }
 
@@ -130,13 +130,13 @@ public class EditController {
     public String addEducation(@ModelAttribute("education") Education education,
                                @ModelAttribute("myProfile") Profile profile) {
         education.setIdProfile(profile.getId());
-        esi.addEducation(education);
+        educationService.addEducation(education);
         return "redirect:/edit_education";
     }
 
     @RequestMapping("/delete_education/{educationId}")
     public String deleteEducation(@PathVariable Integer educationId) {
-        esi.deleteEducation(educationId);
+        educationService.deleteEducation(educationId);
         return "redirect:/edit_education";
     }
 
@@ -149,7 +149,7 @@ public class EditController {
 
     @RequestMapping(value = "/save_languages", method = RequestMethod.POST)
     public String saveLanguages(@ModelAttribute("myProfile") Profile profile) {
-        psi.update(profile);
+        profileService.update(profile);
         return "redirect:/edit_hobbies";
     }
 
@@ -157,13 +157,13 @@ public class EditController {
     public String addLanguage(@ModelAttribute("language") Language language,
                               @ModelAttribute("myProfile") Profile profile) {
         language.setIdProfile(profile.getId());
-        lsi.addLanguage(language);
+        languageService.addLanguage(language);
         return "redirect:/edit_languages";
     }
 
     @RequestMapping("/delete_language/{languageId}")
     public String deleteLanguage(@PathVariable Integer languageId){
-        lsi.deleteLanguage(languageId);
+        languageService.deleteLanguage(languageId);
         return "redirect:/edit_languages";
     }
 
@@ -176,7 +176,7 @@ public class EditController {
 
     @RequestMapping(value = "/save_hobbies", method = RequestMethod.POST)
     public String saveHobbies(@ModelAttribute("myProfile") Profile profile) {
-        psi.update(profile);
+        profileService.update(profile);
         return "redirect:/";
     }
 
@@ -184,13 +184,13 @@ public class EditController {
     public String addHobby(@ModelAttribute("hobby") Hobby hobby,
                            @ModelAttribute("myProfile") Profile profile) {
         hobby.setIdProfile(profile.getId());
-        hsi.addHobby(hobby);
+        hobbyService.addHobby(hobby);
         return "redirect:/edit_hobbies";
     }
 
     @RequestMapping("/delete_hobby/{hobbyId}")
     public String deleteHobby(@PathVariable Integer hobbyId){
-        hsi.deleteHobby(hobbyId);
+        hobbyService.deleteHobby(hobbyId);
         return "redirect:/edit_hobbies";
     }
 
@@ -198,7 +198,7 @@ public class EditController {
     //All Models
     @ModelAttribute
     public void getModels(Model model) {
-        Profile myProfile = psi.getById(16);
+        Profile myProfile = profileService.getById(16);
         Utility utility = new Utility();
         Skill skill = new Skill();
         Practic practic = new Practic();

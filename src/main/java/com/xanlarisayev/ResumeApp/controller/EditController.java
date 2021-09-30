@@ -73,9 +73,7 @@ public class EditController {
     }
 
     @RequestMapping(value = "/add_skill", method = RequestMethod.POST)
-    public String addSkill(@ModelAttribute("skill") Skill skill,
-                           @ModelAttribute("myProfile") Profile profile) {
-        skill.setIdProfile(profile.getId());
+    public String addSkill(@ModelAttribute("skill") Skill skill) {
         skillService.addSkill(skill);
         return "redirect:/edit_skills";
     }
@@ -100,9 +98,7 @@ public class EditController {
     }
 
     @RequestMapping(value = "/add_practice", method = RequestMethod.POST)
-    public String addPractice(@ModelAttribute("practice") Practic practice,
-                              @ModelAttribute("myProfile") Profile profile) {
-        practice.setIdProfile(profile.getId());
+    public String addPractice(@ModelAttribute("practice") Practic practice) {
         practiceService.addPractice(practice);
         return "redirect:/edit_practise";
     }
@@ -127,9 +123,7 @@ public class EditController {
     }
 
     @RequestMapping(value = "/add_education", method = RequestMethod.POST)
-    public String addEducation(@ModelAttribute("education") Education education,
-                               @ModelAttribute("myProfile") Profile profile) {
-        education.setIdProfile(profile.getId());
+    public String addEducation(@ModelAttribute("education") Education education) {
         educationService.addEducation(education);
         return "redirect:/edit_education";
     }
@@ -154,9 +148,7 @@ public class EditController {
     }
 
     @RequestMapping(value = "/add_language", method = RequestMethod.POST)
-    public String addLanguage(@ModelAttribute("language") Language language,
-                              @ModelAttribute("myProfile") Profile profile) {
-        language.setIdProfile(profile.getId());
+    public String addLanguage(@ModelAttribute("language") Language language) {
         languageService.addLanguage(language);
         return "redirect:/edit_languages";
     }
@@ -181,9 +173,7 @@ public class EditController {
     }
 
     @RequestMapping(value = "/add_hobby", method = RequestMethod.POST)
-    public String addHobby(@ModelAttribute("hobby") Hobby hobby,
-                           @ModelAttribute("myProfile") Profile profile) {
-        hobby.setIdProfile(profile.getId());
+    public String addHobby(@ModelAttribute("hobby") Hobby hobby) {
         hobbyService.addHobby(hobby);
         return "redirect:/edit_hobbies";
     }

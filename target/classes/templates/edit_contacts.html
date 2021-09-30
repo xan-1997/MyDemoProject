@@ -14,21 +14,17 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <script>
-        function changeClass(element) {
-            element.className = "nav-link active";
-        }
-    </script>
 </head>
 <body>
 <div th:insert="tag/navbar :: nav"></div>
+
 <!--Panel -->
 <ul class="nav nav-tabs text-center">
     <li class="nav-item">
         <a class="nav-link" th:href="@{/edit_profile}">Profile</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" th:href="@{/edit_contacts}">Contacts</a>
+        <a class="nav-link  active" th:href="@{/edit_contacts}">Contacts</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" th:href="@{/edit_skills}">Skills</a>
@@ -43,46 +39,23 @@
         <a class="nav-link" th:href="@{/edit_languages}">Languages</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link active" th:href="@{/edit_hobbies}">Hobbies</a>
+        <a class="nav-link" th:href="@{/edit_hobbies}">Hobbies</a>
     </li>
 </ul>
-<!--div for edit hobbies -->
+<!--show and edit parameters-->
 <div style="margin-left: 20px; margin-right: 40px;">
-    <form id="save" th:action="@{/save_hobbies}" method="post" th:object="${myProfile}">
-        <div th:each="hob, index: *{hobbiesById}">
-            <label style="margin-top: 20px;">Hobby Name: </label>
-            <input style="clear: both; width: 15%;" type="text" th:field="*{hobbiesById[__${index.index}__].name}"/>
-            <a style="font-size: 10px;margin-left: 10px;"
-               class="btn btn-danger" th:href="@{/delete_hobby/{hobbyId}(hobbyId=${hob.id})}">Delete</a>
+    <form th:action="@{/save_contacts}" method="post" th:object="${myProfile}">
+        <div style="display: grid">
+            <label style="margin-top: 20px;">GitHub: </label>
+            <input style="clear: both; width: 25%;" type="text" th:field="*{github}"/>
+            <hr>
+            <label>LinkedIn: </label>
+            <input style="clear: both; width: 25%;" type="text" th:field="*{linkedin}">
             <hr>
         </div>
+        <input type="submit" value="Save">
     </form>
-    <!--form for add hobby -->
-    <form id="add" th:action="@{/add_hobby}" th:method="post">
-        <div id="field" th:object="${hobby}">
-            <!--Place for adding html code with javascript on click add button -->
-            <input type="hidden" name="idProfile" id="idProfile" th:value="${myProfile.id}">
-        </div>
-    </form>
-    <div style="margin-bottom: 30px;">
-        <input form="save" type="submit" value="Save">
-        <input type="button" id="new_field" value="Add Hobby" onclick="add_field()">
-    </div>
 </div>
-<script>
-    function add_field() {
-        var obj = document.getElementById('field');
-        var divObj = document.createElement("div");
-        divObj.innerHTML =
-            '<label style="margin-top: 20px;">Hobby Name: </label>' +
-            '<input style="clear: both; width: 10%;" type="text" name="name" id="name"/>' +
-            '<button style="margin-left: 5px;" class="btn btn-warning" form="add" type="submit">Submit</button>' +
-            '<hr>';
-        obj.appendChild(divObj);
-        var btn = document.getElementById('new_field');
-        btn.style.display = "none";
-    }
-</script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
         integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"

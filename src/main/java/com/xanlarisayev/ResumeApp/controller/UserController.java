@@ -9,13 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
-
 @Controller
 public class UserController {
 
     @Autowired
-    private ProfileServiceInter psi;
+    private ProfileServiceInter profileService;
 
 
 
@@ -26,7 +24,7 @@ public class UserController {
 
     @ModelAttribute
     public void getModels(Model model){
-        Profile myProfile = psi.getById(16);
+        Profile myProfile = profileService.getById(16);
         Utility utility = new Utility();
 
         model.addAttribute("utility", utility);

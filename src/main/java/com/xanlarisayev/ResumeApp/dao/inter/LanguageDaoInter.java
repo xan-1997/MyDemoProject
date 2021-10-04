@@ -1,8 +1,8 @@
 package com.xanlarisayev.ResumeApp.dao.inter;
 
 import com.xanlarisayev.ResumeApp.entity.Language;
+import org.springframework.data.repository.CrudRepository;
 
-public interface LanguageDaoInter {
-    boolean addLanguage(Language language);
-    boolean deleteLanguage(Integer languageId);
+public interface LanguageDaoInter extends CrudRepository<Language, Integer> {
+
 }

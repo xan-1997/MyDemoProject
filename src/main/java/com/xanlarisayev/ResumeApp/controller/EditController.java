@@ -1,5 +1,6 @@
 package com.xanlarisayev.ResumeApp.controller;
 
+import com.xanlarisayev.ResumeApp.dao.inter.*;
 import com.xanlarisayev.ResumeApp.entity.*;
 import com.xanlarisayev.ResumeApp.service.inter.*;
 import com.xanlarisayev.ResumeApp.util.Utility;
@@ -18,19 +19,19 @@ public class EditController {
     private ProfileServiceInter profileService;
 
     @Autowired
-    private SkillServiceInter skillService;
+    private SkillDaoInter skillRepo;
 
     @Autowired
-    private PracticeServiceInter practiceService;
+    private PracticeDaoInter practiceRepo;
 
     @Autowired
-    private EducationServiceInter educationService;
+    private EducationDaoInter educationRepo;
 
     @Autowired
-    private LanguageServiceInter languageService;
+    private LanguageDaoInter languageRepo;
 
     @Autowired
-    private HobbyServiceInter hobbyService;
+    private HobbyDaoInter hobbyRepo;
 
 
     //Profile
@@ -74,13 +75,14 @@ public class EditController {
 
     @RequestMapping(value = "/add_skill", method = RequestMethod.POST)
     public String addSkill(@ModelAttribute("skill") Skill skill) {
-        skillService.addSkill(skill);
+        skillRepo.save(skill);
         return "redirect:/edit_skills";
     }
 
     @RequestMapping(value = "/delete_skill/{skillId}")
     public String deleteSkill(@PathVariable Integer skillId) {
-        skillService.deleteSkill(skillId);
+        Skill skill = skillRepo.findById(skillId).orElseThrow();
+        skillRepo.delete(skill);
         return "redirect:/edit_skills";
     }
 
@@ -99,13 +101,14 @@ public class EditController {
 
     @RequestMapping(value = "/add_practice", method = RequestMethod.POST)
     public String addPractice(@ModelAttribute("practice") Practic practice) {
-        practiceService.addPractice(practice);
+        practiceRepo.save(practice);
         return "redirect:/edit_practise";
     }
 
     @RequestMapping("/delete_practice/{practiceId}")
     public String deletePractice(@PathVariable Integer practiceId) {
-        practiceService.deletePractice(practiceId);
+        Practic practic = practiceRepo.findById(practiceId).orElseThrow();
+        practiceRepo.delete(practic);
         return "redirect:/edit_practise";
     }
 
@@ -124,13 +127,14 @@ public class EditController {
 
     @RequestMapping(value = "/add_education", method = RequestMethod.POST)
     public String addEducation(@ModelAttribute("education") Education education) {
-        educationService.addEducation(education);
+        educationRepo.save(education);
         return "redirect:/edit_education";
     }
 
     @RequestMapping("/delete_education/{educationId}")
     public String deleteEducation(@PathVariable Integer educationId) {
-        educationService.deleteEducation(educationId);
+        Education education = educationRepo.findById(educationId).orElseThrow();
+        educationRepo.delete(education);
         return "redirect:/edit_education";
     }
 
@@ -149,13 +153,14 @@ public class EditController {
 
     @RequestMapping(value = "/add_language", method = RequestMethod.POST)
     public String addLanguage(@ModelAttribute("language") Language language) {
-        languageService.addLanguage(language);
+        languageRepo.save(language);
         return "redirect:/edit_languages";
     }
 
     @RequestMapping("/delete_language/{languageId}")
     public String deleteLanguage(@PathVariable Integer languageId){
-        languageService.deleteLanguage(languageId);
+        Language language = languageRepo.findById(languageId).orElseThrow();
+        languageRepo.delete(language);
         return "redirect:/edit_languages";
     }
 
@@ -174,13 +179,14 @@ public class EditController {
 
     @RequestMapping(value = "/add_hobby", method = RequestMethod.POST)
     public String addHobby(@ModelAttribute("hobby") Hobby hobby) {
-        hobbyService.addHobby(hobby);
+        hobbyRepo.save(hobby);
         return "redirect:/edit_hobbies";
     }
 
     @RequestMapping("/delete_hobby/{hobbyId}")
     public String deleteHobby(@PathVariable Integer hobbyId){
-        hobbyService.deleteHobby(hobbyId);
+        Hobby hobby = hobbyRepo.findById(hobbyId).orElseThrow();
+        hobbyRepo.delete(hobby);
         return "redirect:/edit_hobbies";
     }
 
